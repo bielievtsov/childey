@@ -32,14 +32,14 @@ const LogIn = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await fetch(
-      "http://localhost:5000/doctor/" + "5ec852892936992a341fbdd6"
+      "http://localhost:5000/doctor/" + "5ec9067ddcd00f392c886dbe"
     );
     const responseJSON = await response.json();
-    console.log(responseJSON);
     localStorage.setItem("doctor", JSON.stringify(responseJSON));
-    responseJSON._id = "5ec852892936992a341fbdd6"
+    responseJSON._id = "5ec9067ddcd00f392c886dbe"
       ? setIsRedirect(true)
       : setIsRedirect(false);
+    props.LogIn();
   };
 
   if (isRedirect) {
@@ -72,6 +72,7 @@ const LogIn = (props) => {
             <input
               type="submit"
               className="form-control form-control"
+              value="submit"
               onClick={handleSubmit}
             />
           </div>

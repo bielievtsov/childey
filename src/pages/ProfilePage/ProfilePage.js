@@ -27,7 +27,6 @@ const ProfilePage = () => {
         <div>Phone number : {phoneNumber}</div>
         <div>Rank : {rank}</div>
         <div>Date of birth : {new Date(dob).getDate()}</div>
-        <div>Name : {firstName}</div>
         <div>
           Working days :{" "}
           {workingDays[0] + " - " + workingDays[workingDays.length - 1]}
