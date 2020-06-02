@@ -35,8 +35,8 @@ function App() {
       <Route path="/pregnantpage" exact>
         <PregnantPage></PregnantPage>
       </Route>
-      <Route>
-        <CreateAppointment path="/create-appointment" exact></CreateAppointment>
+      <Route path="/create-appointment" exact>
+        <CreateAppointment></CreateAppointment>
       </Route>
     </div>
   );

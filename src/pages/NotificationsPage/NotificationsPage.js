@@ -12,10 +12,9 @@ const NotificationsPage = () => {
       .then((res) => res.json())
       .then((data) => {
         setNotifications(data);
-        return data;
       })
-      .then((d) => {
-        console.log("notifications", d);
+      .then(() => {
+        console.log("notifications", notifications);
       });
   }, []);
   let k = 0;
@@ -23,9 +22,11 @@ const NotificationsPage = () => {
     return (
       <div>
         {notifications.map((patient) => {
-          return (
-            <NotificationItem patient={patient} key={k++}></NotificationItem>
-          );
+          if (!patient.checked) {
+            return (
+              <NotificationItem patient={patient} key={k++}></NotificationItem>
+            );
+          }
         })}
       </div>
     );

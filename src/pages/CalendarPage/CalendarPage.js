@@ -42,6 +42,7 @@ const CalendarPage = (props) => {
       localizer={localizer}
       style={style}
       step={60}
+      style={{ height: "600px", width: "100%" }}
       events={events}
       startAccessor="start"
       endAccessor="end"

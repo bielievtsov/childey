@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import styles from "./Header.module.css";
 
 const Header = (props) => {
-  const { isLoggedIn } = props;
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    JSON.parse(localStorage.getItem("token")) ? true : false
+  );
+
+  const idLn = props.isLoggedIn;
 
   const handleLogOut = () => {
     localStorage.clear();
-    props.LogIn();
+    setIsLoggedIn(JSON.parse(localStorage.getItem("token")) ? true : false);
   };
+
+  useEffect(() => {
+    setIsLoggedIn(JSON.parse(localStorage.getItem("token")) ? true : false);
+  }, [idLn]);
 
   return (
     <div className={styles.header}>

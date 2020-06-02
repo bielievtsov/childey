@@ -1,13 +1,27 @@
 import React, { useState } from "react";
 
 const ParamsComponent = ({ paramets }) => {
-  const [approve, setApprove] = useState(false);
+  const { token } = JSON.parse(localStorage.getItem("token"));
 
   const handleAplly = () => {
-    setApprove(true);
+    fetch(`http://140.82.32.65:3000/params/${paramets._id}`, {
+      method: "PUT",
+      headers: { "x-access-token": token, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        answer: true,
+        comment: "comment",
+      }),
+    });
   };
   const handleDecline = () => {
-    setApprove(false);
+    fetch(`http://140.82.32.65:3000/params/${paramets._id}`, {
+      method: "PUT",
+      headers: { "x-access-token": token, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        answer: false,
+        comment: "comment",
+      }),
+    });
   };
   return (
     <div>
