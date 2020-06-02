@@ -1,11 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+import { withRouter, Redirect } from "react-router-dom";
 
 const PatientSearchItem = ({ patient }) => {
-  return (
-    <div>
-      <div>{patient.firstName + " " + patient.lastName}</div>
-    </div>
-  );
+  const [isRedirect, setIsRedirect] = useState(false);
+
+  const handleRedirect = () => {
+    setIsRedirect(!isRedirect);
+  };
+
+  if (isRedirect) {
+    return (
+      <Redirect
+        to={{
+          pathname: "/pregnantpage",
+          state: { patient },
+        }}
+      ></Redirect>
+    );
+  } else {
+    return (
+      <div onClick={handleRedirect}>
+        <div>{patient.firstName + " " + patient.lastName}</div>
+      </div>
+    );
+  }
 };
 
-export default PatientSearchItem;
+export default withRouter(PatientSearchItem);

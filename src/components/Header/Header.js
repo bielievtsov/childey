@@ -8,17 +8,32 @@ const Header = (props) => {
 
   const handleLogOut = () => {
     localStorage.clear();
+    props.LogIn();
   };
 
   return (
     <div className={styles.header}>
-      <NavLink to="/" className={styles.logo}>
-        Childey
-      </NavLink>
+      <div
+        className={styles.logo}
+        style={{ display: !isLoggedIn ? "block" : "none" }}
+      >
+        <NavLink to="/">Childey</NavLink>
+      </div>
       <div className={styles["header-right"]}>
         <NavLink to="logIn" style={{ display: !isLoggedIn ? "block" : "none" }}>
           {" "}
           Log In{" "}
+        </NavLink>
+        <NavLink to="main" style={{ display: isLoggedIn ? "block" : "none" }}>
+          {" "}
+          Calendar{" "}
+        </NavLink>
+        <NavLink
+          to="profile"
+          style={{ display: isLoggedIn ? "block" : "none" }}
+        >
+          {" "}
+          Profile{" "}
         </NavLink>
         <NavLink
           to="notifications"

@@ -3,9 +3,10 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 const LogIn = (props) => {
-  const [email, setEmail] = useState("");
+  const [phoneNumber, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isRedirect, setIsRedirect] = useState(false);
+  const [isRedirectAbort, setIsRedirectAbort] = useState(false);
 
   const handleFormChange = (e) => {
     if (e.target.name === "email") {
@@ -26,23 +27,33 @@ const LogIn = (props) => {
     e.preventDefault();
     setPassword("");
     setEmail("");
-    props.LogIn();
+    setIsRedirectAbort(!isRedirectAbort);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch(
-      "http://localhost:5000/doctor/" + "5ec9067ddcd00f392c886dbe"
-    );
+
+    const response = await fetch("http://140.82.32.65:3000/doctor/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        phoneNumber,
+        password,
+      }),
+    });
+
     const responseJSON = await response.json();
-    localStorage.setItem("doctor", JSON.stringify(responseJSON));
-    responseJSON._id = "5ec9067ddcd00f392c886dbe"
-      ? setIsRedirect(true)
-      : setIsRedirect(false);
+
+    localStorage.setItem("token", JSON.stringify(responseJSON));
     props.LogIn();
+    setIsRedirect(!isRedirect);
   };
 
-  if (isRedirect) {
+  if (isRedirectAbort) {
+    return <Redirect to={{ pathname: "/" }}></Redirect>;
+  } else if (isRedirect) {
     return <Redirect to={{ pathname: "/main" }}></Redirect>;
   } else {
     return (
