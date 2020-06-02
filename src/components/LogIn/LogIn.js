@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import styles from "./LogIn.module.scss";
 
 const LogIn = (props) => {
   const [phoneNumber, setEmail] = useState("");
@@ -57,37 +58,32 @@ const LogIn = (props) => {
     return <Redirect to={{ pathname: "/main" }}></Redirect>;
   } else {
     return (
-      <div style={{ display: props.showLogIn ? "block" : "none" }}>
-        <form onChange={handleFormChange}>
-          <button onClick={handleAbortLogIn}>X</button>
-          <div>
-            <label>Email</label>
+      <div className={styles["wrapper"]}>
+        <div className={styles["container"]}>
+          <h1>Log in </h1>
+          <form onChange={handleFormChange} className={styles["form"]}>
             <input
+              className={styles["fadeIn second"]}
               type="text"
               name="email"
-              placeholder="type in your email"
-              className="form-control form-control"
+              placeholder="phone"
             />
-          </div>
-          <div>
-            <label>Passowrd</label>
             <input
               type="text"
               name="password"
-              placeholder="enter your password"
-              className="form-control form-control"
+              className={styles["fadeIn third"]}
+              placeholder="password"
             />
-          </div>
-          <div>
-            <label>Submit</label>
+
             <input
               type="submit"
-              className="form-control form-control"
-              value="submit"
+              className={styles["fadeIn fourth"]}
+              id="login-button"
+              value="Log In"
               onClick={handleSubmit}
             />
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     );
   }
