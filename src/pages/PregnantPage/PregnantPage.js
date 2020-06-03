@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import queryString from "query-string";
 import { withRouter, Redirect } from "react-router-dom";
+import billie from "../../images/billie.png";
 import ParamsComponent from "../../components/ParamsComponent/ParamsComponent";
+import styles from "./Page.module.css";
 
 const PregnantPage = (props) => {
   queryString.parse(props.location.search);
@@ -41,30 +43,36 @@ const PregnantPage = (props) => {
     );
   } else {
     return (
-      <div>
-        <div>
+      <div className={styles["root"]}>
+        <div className={styles["profile"]}>
           <div>
-            <img></img>
             <div>
-              <div>First name: {patient.firstName}</div>
-              <div>Last name: {patient.lastName}</div>
+              <img alt="billie" src={billie}></img>
+              <div>
+                <div>Ім'я: {patient.firstName}</div>
+                <div>Прізвище: {patient.lastName}</div>
+              </div>
+            </div>
+            <div>
+              <div>Вік: {2020 - new Date(patient.dob).getFullYear()}</div>
+              <div>Телефон: {patient.phoneNumber}</div>
             </div>
           </div>
           <div>
-            <div>Age: {2020 - new Date(patient.dob).getFullYear()}</div>
-            <div>Number: {patient.phoneNumber}</div>
-          </div>
-          <div>
-            <button onClick={handleCreateAppointment}>
-              Create am appointment
+            <button onClick={handleCreateAppointment} className={styles["but"]}>
+              Назначити зустріч
             </button>
           </div>
         </div>
-        {paramets.map((el) => {
-          if (el.patient._id == _id && el.checked === false) {
-            return <ParamsComponent paramets={el} key={k++}></ParamsComponent>;
-          }
-        })}
+        <div className={styles["list"]}>
+          {paramets.map((el) => {
+            if (el.patient._id === _id && el.checked === false) {
+              return (
+                <ParamsComponent paramets={el} key={k++}></ParamsComponent>
+              );
+            }
+          })}
+        </div>
       </div>
     );
   }

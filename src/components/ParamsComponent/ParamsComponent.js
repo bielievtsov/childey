@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./Item.module.css";
 
 const ParamsComponent = ({ paramets }) => {
   const { token } = JSON.parse(localStorage.getItem("token"));
@@ -24,14 +25,14 @@ const ParamsComponent = ({ paramets }) => {
     });
   };
   return (
-    <div>
+    <div className={styles["root"]}>
       <h2>Params figures</h2>
       <div>
         <div>Weight: {paramets.weight} tonns</div>
         <div>Temperature : {paramets.temperature} C</div>
         <div>Bellie size : {paramets.bellySize} cm</div>
       </div>
-      <div>
+      <div className={styles["buttons"]}>
         <button onClick={handleAplly}>Approved</button>
         <button onClick={handleDecline}>Decline</button>
       </div>

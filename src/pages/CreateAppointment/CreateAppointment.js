@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import queryString from "query-string";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import styles from "./Create.module.css";
 
 const CreateAppointment = (props) => {
   queryString.parse(props.location.search);
@@ -13,6 +14,7 @@ const CreateAppointment = (props) => {
   const [type, setType] = useState("");
   const [price, setPrice] = useState("");
   const [duration, setDuration] = useState("");
+  const [isRedirect, setIsRedirect] = useState(false);
   const { _id } = patient;
 
   const handleChange = (e) => {
@@ -29,7 +31,6 @@ const CreateAppointment = (props) => {
   };
 
   const handleCreateAppointment = () => {
-    console.log(_id, doctorId, startDate, type, price, duration);
     fetch("http://140.82.32.65:3000/appointment", {
       method: "POST",
       headers: {
@@ -45,38 +46,43 @@ const CreateAppointment = (props) => {
         duration,
         isPayed: false,
       }),
+    }).then(() => {
+      setIsRedirect(!isRedirect);
     });
   };
 
-  return (
-    <div onChange={handleChange}>
-      <div>
-        <DatePicker
-          selected={startDate}
-          onChange={(date) => setStartDate(date)}
-          timeInputLabel="Time:"
-          dateFormat="MM/dd/yyyy h:mm aa"
-          showTimeInput
-        />
+  if (isRedirect) {
+    return <Redirect to={{ pathname: "/main" }}></Redirect>;
+  } else {
+    return (
+      <div onChange={handleChange} className={styles["root"]}>
+        <div className={styles["items"]}>
+          <span>Оберіть дату зустрічі</span>
+          <DatePicker
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+            timeInputLabel="Time:"
+            dateFormat="MM/dd/yyyy h:mm aa"
+            showTimeInput
+          />
+        </div>
+        <div className={styles["i"]}>
+          <input type="text" placeholder="Тип" name="type"></input>
+          <input type="text" placeholder="Ціна" name="price"></input>
+          <input
+            type="text"
+            placeholder="Тривалість (хв)"
+            name="duration"
+          ></input>
+        </div>
+        <div>
+          <button onClick={handleCreateAppointment} className={styles["but"]}>
+            Назначити
+          </button>
+        </div>
       </div>
-      <div>
-        <input type="text" placeholder="Appointment's type" name="type"></input>
-        <input
-          type="text"
-          placeholder="Appointment's price"
-          name="price"
-        ></input>
-        <input
-          type="text"
-          placeholder="Appointment's duration"
-          name="duration"
-        ></input>
-      </div>
-      <div>
-        <button onClick={handleCreateAppointment}>Create an appointment</button>
-      </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default withRouter(CreateAppointment);

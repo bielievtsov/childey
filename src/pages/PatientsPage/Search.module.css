@@ -1,0 +1,38 @@
+.seacrh-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+.name {
+  width: 300px;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 5px;
+}
+.but {
+  margin-top: 20px;
+  height: 40px;
+  width: 80px;
+  cursor: pointer;
+  background-color: rgba(0, 204, 255, 0.376);
+  border: none;
+  border-radius: 5px;
+  font-size: large;
+}
+.but:hover {
+  background-color: rgba(0, 204, 255, 0.993);
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  justify-content: center;
+}
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

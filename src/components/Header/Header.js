@@ -7,8 +7,22 @@ const Header = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(
     JSON.parse(localStorage.getItem("token")) ? true : false
   );
+  const [doctorName, setDoctorName] = useState("");
 
   const idLn = props.isLoggedIn;
+
+  if (isLoggedIn) {
+    const { doctorId } = JSON.parse(localStorage.getItem("token"));
+    const { token } = JSON.parse(localStorage.getItem("token"));
+    fetch("http://140.82.32.65:3000/doctor/" + doctorId, {
+      headers: { "x-access-token": token },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setDoctorName(data.firstName);
+        return data;
+      });
+  }
 
   const handleLogOut = () => {
     localStorage.clear();
@@ -21,11 +35,8 @@ const Header = (props) => {
 
   return (
     <div className={styles.header}>
-      <div
-        className={styles.logo}
-        style={{ display: !isLoggedIn ? "block" : "none" }}
-      >
-        <NavLink to="/">Childey</NavLink>
+      <div className={styles.logo}>
+        <NavLink to="/">Hello, {!isLoggedIn ? "Childey" : doctorName}!</NavLink>
       </div>
       <div className={styles["header-right"]}>
         <NavLink to="logIn" style={{ display: !isLoggedIn ? "block" : "none" }}>

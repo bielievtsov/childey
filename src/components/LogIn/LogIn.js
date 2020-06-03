@@ -24,13 +24,6 @@ const LogIn = (props) => {
     }
   }, []);
 
-  const handleAbortLogIn = (e) => {
-    e.preventDefault();
-    setPassword("");
-    setEmail("");
-    setIsRedirectAbort(!isRedirectAbort);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -59,31 +52,34 @@ const LogIn = (props) => {
   } else {
     return (
       <div className={styles["wrapper"]}>
-        <div className={styles["container"]}>
-          <h1>Log in </h1>
-          <form onChange={handleFormChange} className={styles["form"]}>
-            <input
-              className={styles["fadeIn second"]}
-              type="text"
-              name="email"
-              placeholder="phone"
-            />
-            <input
-              type="text"
-              name="password"
-              className={styles["fadeIn third"]}
-              placeholder="password"
-            />
-
-            <input
-              type="submit"
-              className={styles["fadeIn fourth"]}
-              id="login-button"
-              value="Log In"
-              onClick={handleSubmit}
-            />
-          </form>
-        </div>
+        <form
+          onChange={handleFormChange}
+          className={styles["login"]}
+          autocomplete="off"
+          role="main"
+        >
+          <h1 className={styles["title"]}>Login Form</h1>
+          <input
+            type="text"
+            name="email"
+            placeholder="phone"
+            required
+            autofocus
+          />
+          <i className={styles["fa fa-user"]}></i>
+          <input
+            type="password"
+            name="password"
+            placeholder="password"
+            required
+          />
+          <i className={styles["fa fa-user"]}></i>
+          <button onClick={handleSubmit}>
+            {" "}
+            <i className={styles["spinner"]}></i>
+            <span className={styles["state"]}>Log in</span>
+          </button>
+        </form>
       </div>
     );
   }

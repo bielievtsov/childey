@@ -1,0 +1,45 @@
+.user {
+  display: flex;
+  flex-direction: row;
+  background-color: rgba(216, 243, 255, 0.39);
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 3%;
+  margin-top: 3%;
+}
+.main {
+  font-family: "Open Sans", sans-serif;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-size: 20px;
+}
+.text {
+  width: 500px;
+}
+.pregnant {
+  float: right;
+}
+
+.button {
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: large;
+  width: 100px;
+  margin-top: 10px;
+}
+.pregnant {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}

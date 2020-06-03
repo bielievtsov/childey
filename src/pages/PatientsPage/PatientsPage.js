@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PatientSearchItem from "../../components/PatientSearchItem/PatientSearchItem";
+import searchStyles from "./Search.module.css";
 
 const PatientsPage = () => {
   const [patients, setPatients] = useState([]);
@@ -42,12 +43,24 @@ const PatientsPage = () => {
   };
 
   const searchComponent = (
-    <div>
+    <div className={searchStyles["root"]}>
+      <h1>Ваші пацієнтки</h1>
       <form onChange={handleChange}>
         {" "}
-        <label>Search</label>
-        <input type="text" name="name" placeholder="Paient's name.."></input>
-        <input type="submit" value="Search" onClick={handleSearch}></input>
+        <div className={searchStyles["seacrh-input"]}>
+          <input
+            type="text"
+            name="name"
+            placeholder="Прізвище пацієнтки.."
+            className={searchStyles.name}
+          ></input>
+          <input
+            type="submit"
+            value="Search"
+            onClick={handleSearch}
+            className={searchStyles["but"]}
+          ></input>
+        </div>
       </form>
     </div>
   );
@@ -56,18 +69,23 @@ const PatientsPage = () => {
     return (
       <div>
         {searchComponent}
-        {patients.map((patient) => {
-          return (
-            <PatientSearchItem patient={patient} key={i++}></PatientSearchItem>
-          );
-        })}
+        <div className={searchStyles["list"]}>
+          {patients.map((patient) => {
+            return (
+              <PatientSearchItem
+                patient={patient}
+                key={i++}
+              ></PatientSearchItem>
+            );
+          })}
+        </div>
       </div>
     );
   } else {
     return (
       <div>
         {searchComponent}
-        <div>No patients for now</div>
+        <div className={searchStyles["list"]}>No patients for now</div>
       </div>
     );
   }

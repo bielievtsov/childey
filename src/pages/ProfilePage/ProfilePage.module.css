@@ -1,0 +1,16 @@
+.main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 3% 10% 10% 10%;
+}
+.main img {
+  float: right;
+  width: 400px;
+  height: 480px;
+  border-radius: 10px;
+}
+.main .text {
+  background-color: rgba(205, 251, 255, 0.561);
+  font-size: 26px;
+}

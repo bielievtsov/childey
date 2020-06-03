@@ -1,0 +1,9 @@
+.main {
+  background-color: rgba(198, 225, 255, 0.527);
+  font-size: 25px;
+  padding: 8px;
+  cursor: pointer;
+}
+.main:hover {
+  background-color: rgb(198, 225, 255);
+}

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { withRouter, Redirect } from "react-router-dom";
+import styles from "./Item.module.css";
 
 const PatientSearchItem = ({ patient }) => {
   const [isRedirect, setIsRedirect] = useState(false);
@@ -19,7 +20,7 @@ const PatientSearchItem = ({ patient }) => {
     );
   } else {
     return (
-      <div onClick={handleRedirect}>
+      <div onClick={handleRedirect} className={styles["main"]}>
         <div>{patient.firstName + " " + patient.lastName}</div>
       </div>
     );

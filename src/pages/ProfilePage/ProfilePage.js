@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import styles from "./ProfilePage.module.css";
 import doctor from "../../images/doctor.jpeg";
 
 const ProfilePage = () => {
@@ -23,27 +24,25 @@ const ProfilePage = () => {
   console.log("fullDoctor", fullDoctor);
 
   return (
-    <div>
+    <div className={styles["main"]}>
       <div>
-        <img src={doctor} style={{ width: 200, height: 300 }}></img>
+        <img src={doctor} alt="doctor"></img>
       </div>
-      <div>
-        <div>Name : {fullDoctor.firstName || "no name"}</div>
-        <div>Secand name : {fullDoctor.lastName}</div>
-        <div>Email : {fullDoctor.email}</div>
-        <div>Phone number : {fullDoctor.phoneNumber}</div>
-        <div>Rank : {fullDoctor.rank}</div>
-        <div>Date of birth : {new Date(fullDoctor.dob).getDate()}</div>
+      <div className={styles["text"]}>
+        <div>Ім'я : {fullDoctor.firstName || "no name"}</div>
+        <div>Прізвище : {fullDoctor.lastName}</div>
+        <div>Пошта : {fullDoctor.email}</div>
+        <div>Телефон : {fullDoctor.phoneNumber}</div>
+        <div>Рейтинг : {fullDoctor.rank}</div>
+        <div>Дата народження : {new Date(fullDoctor.dob).getDate()}</div>
         <div>
-          Working days :{" "}
+          Дні прийому :{" "}
           {fullDoctor.hasOwnProperty("workingDays")
-            ? fullDoctor["workingDays"][0] +
-              " - " +
-              fullDoctor["workingDays"][fullDoctor["workingDays"].length - 1]
+            ? fullDoctor["workingDays"].join(" - ")
             : "nothing"}
         </div>
-        <div>Working hours : {fullDoctor["workingHours"]}</div>
-        <div> Clients : {fullDoctor.generalPatientNumber}</div>
+        <div>Часи прийому : {fullDoctor["workingHours"]}</div>
+        <div> Кількість клієнтів : {fullDoctor.generalPatientNumber}</div>
       </div>
     </div>
   );

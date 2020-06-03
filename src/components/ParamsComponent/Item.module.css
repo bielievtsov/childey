@@ -1,0 +1,27 @@
+.root {
+  background-color: rgb(91, 55, 250);
+  font-size: 26px;
+  border-radius: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+.root button {
+  cursor: pointer;
+  font-size: 20px;
+  background-color: rgb(62, 178, 255);
+  border: none;
+  color: aliceblue;
+  border-radius: 5px;
+  padding: 5px;
+  width: 120px;
+}
+.root button:hover {
+  background-color: rgb(115, 199, 255);
+}
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+  margin-top: 5px;
+}
