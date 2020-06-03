@@ -45,7 +45,7 @@ const ParamsComponent = ({ paramets, setProps, p }) => {
         <div>Об'єм живота : {paramets.bellySize} см</div>
         <div>
           <input
-            placeholder="Коментарій"
+            placeholder="Коментар"
             type="text"
             name="comment"
             className={styles["comment"]}
@@ -54,7 +54,7 @@ const ParamsComponent = ({ paramets, setProps, p }) => {
       </div>
       <div className={styles["buttons"]}>
         <button onClick={handleAplly}>Прийняти</button>
-        <button onClick={handleDecline}>Відклонити</button>
+        <button onClick={handleDecline}>Відхилити</button>
       </div>
     </div>
   );

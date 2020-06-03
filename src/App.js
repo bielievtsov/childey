@@ -9,10 +9,12 @@ import NotificationsPage from "./pages/NotificationsPage/NotificationsPage";
 import CalendarPage from "./pages/CalendarPage/CalendarPage";
 import PregnantPage from "./pages/PregnantPage/PregnantPage";
 import CreateAppointment from "./pages/CreateAppointment/CreateAppointment";
+import QR from "./components/QR/QR";
 
 function App() {
   return (
     <div>
+      <QR></QR>
       <Header></Header>
       <Route path="/main" exact>
         <CalendarPage></CalendarPage>

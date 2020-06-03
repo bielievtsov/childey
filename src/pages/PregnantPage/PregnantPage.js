@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import queryString from "query-string";
 import { withRouter, Redirect } from "react-router-dom";
-import billie from "../../images/billie.png";
+import billie from "../../images/woman.png";
 import ParamsComponent from "../../components/ParamsComponent/ParamsComponent";
 import styles from "./Page.module.css";
 

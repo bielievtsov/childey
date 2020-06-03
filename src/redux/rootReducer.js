@@ -3,6 +3,7 @@ const initialState = {
   isLoggedIn: false,
   doctorId: "",
   noficications: 0,
+  showQR: false,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -13,6 +14,16 @@ const rootReducer = (state = initialState, action) => {
         showLogIn: !state.showLogIn,
         isLoggedIn: !state.isLoggedIn,
         doctorId: state.doctorId,
+      };
+    }
+    case "QR": {
+      console.log(action.payload);
+      return {
+        ...state,
+        showLogIn: !state.showLogIn,
+        isLoggedIn: !state.isLoggedIn,
+        doctorId: state.doctorId,
+        showQR: action.payload,
       };
     }
     case "NOTIF": {

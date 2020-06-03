@@ -2,8 +2,9 @@ import React from "react";
 import styles from "./HomePage.module.scss";
 import doctor from "../images/doctor.jpeg";
 import woman from "../images/woman.png";
+import { connect } from "react-redux";
 
-const HomePage = () => {
+const HomePage = (props) => {
   return (
     <div className={styles["main"]}>
       <div className={styles["user"]}>
@@ -13,10 +14,11 @@ const HomePage = () => {
         <div>
           <h2>Доктор</h2>
           <div className={styles["text"]}>
-            Childey is an ability for you as a doctor to make your job easier
-            and more efficient, since you are able to interact with your
-            patients remotely and obtain required information to maintain
-            pregnancy as comfortable as possible for both you and expectant.
+            Childey - це можливість для Вас, як доктора, значно спростити та
+            покращити роботу. Для цього вам стануть у нагоді можливості
+            віддаленої комунакціїї з клієнтом та отримання параметрів пацієнтки
+            у режимі онлайн. Це допоможе Вам та Вашим пацієнткам почуватися
+            комфортніше під час ведення вагітності.
           </div>
         </div>
       </div>
@@ -31,18 +33,28 @@ const HomePage = () => {
         <div className={styles["pregnant"]}>
           <h2>Вагітна</h2>
           <div className={styles["text"]}>
-            Have you ever had an anxiety of having problems during pregnancy,
-            that something is wrong but the doctor is far away and you have a
-            doctor's appointment just in a week? No worries anymore! Childey!
-            This is the decision to keep your nerves calm. The professionals
-            will help you any time you want it and won't let you miss any
-            unlikable changes in your or your baby's health.
+            Чи турбувалися Ви про проблеми, які можуть виникнути у Вас підчас
+            вагітності? Доктор далеко, щось йде не так з Вами або малюком, а
+            наступна консультація не скоро. Звісно, що так. Childey! Ось ваш
+            помічник у цій скрутній ситуації. Ви будете інформовані про Вашу
+            вагітність, а Ваш доктор буде відстежувати поточні дані та буде з
+            вами на зв'язку.
           </div>
-          <button className={styles["button"]}>Почнемо!</button>
+          <button className={styles["button"]} onClick={props.QRhid}>
+            Почнемо!
+          </button>
         </div>
       </div>
     </div>
   );
 };
 
-export default HomePage;
+const dispatchPropsToState = (dispatch) => {
+  return {
+    QRhid: () => {
+      dispatch({ type: "QR", payload: true });
+    },
+  };
+};
+
+export default connect(null, dispatchPropsToState)(HomePage);
