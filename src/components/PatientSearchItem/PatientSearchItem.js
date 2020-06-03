@@ -14,7 +14,11 @@ const PatientSearchItem = ({ patient }) => {
       <Redirect
         to={{
           pathname: "/pregnantpage",
-          state: { patient },
+          state: {
+            patient: {
+              patient,
+            },
+          },
         }}
       ></Redirect>
     );

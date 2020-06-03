@@ -1,0 +1,12 @@
+.item {
+  font-size: 25px;
+  padding: 10px;
+  cursor: pointer;
+  background-color: rgb(123, 224, 255);
+  color: rgb(255, 0, 0);
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.item:hover {
+  background-color: rgb(187, 238, 253);
+}

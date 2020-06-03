@@ -11,7 +11,7 @@ const HomePage = () => {
           <img src={doctor} style={{ width: 300, height: 400 }} alt="doctor" />
         </div>
         <div>
-          <h2>Doctor</h2>
+          <h2>Доктор</h2>
           <div className={styles["text"]}>
             Childey is an ability for you as a doctor to make your job easier
             and more efficient, since you are able to interact with your
@@ -29,7 +29,7 @@ const HomePage = () => {
           ></img>
         </div>
         <div className={styles["pregnant"]}>
-          <h2>Pregnant</h2>
+          <h2>Вагітна</h2>
           <div className={styles["text"]}>
             Have you ever had an anxiety of having problems during pregnancy,
             that something is wrong but the doctor is far away and you have a
@@ -38,7 +38,7 @@ const HomePage = () => {
             will help you any time you want it and won't let you miss any
             unlikable changes in your or your baby's health.
           </div>
-          <button className={styles["button"]}>Start</button>
+          <button className={styles["button"]}>Почнемо!</button>
         </div>
       </div>
     </div>

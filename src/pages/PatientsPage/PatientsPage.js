@@ -85,7 +85,7 @@ const PatientsPage = () => {
     return (
       <div>
         {searchComponent}
-        <div className={searchStyles["list"]}>No patients for now</div>
+        <div className={searchStyles["list"]}>Нема пацієнтів</div>
       </div>
     );
   }

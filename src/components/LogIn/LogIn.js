@@ -37,12 +37,15 @@ const LogIn = (props) => {
         password,
       }),
     });
+    if (response.status === 200) {
+      const responseJSON = await response.json();
 
-    const responseJSON = await response.json();
-
-    localStorage.setItem("token", JSON.stringify(responseJSON));
-    props.LogIn();
-    setIsRedirect(!isRedirect);
+      localStorage.setItem("token", JSON.stringify(responseJSON));
+      props.LogIn();
+      setIsRedirect(!isRedirect);
+    } else {
+      alert("Неправильні дані входу, спробуйте ще :-)");
+    }
   };
 
   if (isRedirectAbort) {
@@ -55,29 +58,29 @@ const LogIn = (props) => {
         <form
           onChange={handleFormChange}
           className={styles["login"]}
-          autocomplete="off"
+          autoComplete="off"
           role="main"
         >
-          <h1 className={styles["title"]}>Login Form</h1>
+          <h1 className={styles["title"]}>Вітаємо, авторизуйтесь!</h1>
           <input
             type="text"
             name="email"
-            placeholder="phone"
+            placeholder="Телефон"
             required
-            autofocus
+            autoFocus
           />
           <i className={styles["fa fa-user"]}></i>
           <input
             type="password"
             name="password"
-            placeholder="password"
+            placeholder="Пароль"
             required
           />
           <i className={styles["fa fa-user"]}></i>
           <button onClick={handleSubmit}>
             {" "}
             <i className={styles["spinner"]}></i>
-            <span className={styles["state"]}>Log in</span>
+            <span className={styles["state"]}>Увійти</span>
           </button>
         </form>
       </div>

@@ -8,6 +8,18 @@ const Header = (props) => {
     JSON.parse(localStorage.getItem("token")) ? true : false
   );
   const [doctorName, setDoctorName] = useState("");
+  const { doctorId } = JSON.parse(localStorage.getItem("token")) || "";
+  const { token } = JSON.parse(localStorage.getItem("token")) || "";
+
+  useEffect(() => {
+    fetch(`http://140.82.32.65:3000/params/${doctorId}`, {
+      headers: { "x-access-token": token },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        props.Notif(data);
+      });
+  }, [isLoggedIn]);
 
   const idLn = props.isLoggedIn;
 
@@ -36,37 +48,42 @@ const Header = (props) => {
   return (
     <div className={styles.header}>
       <div className={styles.logo}>
-        <NavLink to="/">Hello, {!isLoggedIn ? "Childey" : doctorName}!</NavLink>
+        <NavLink to="/">
+          Вітаємо, {!isLoggedIn ? "Childey" : doctorName}!
+        </NavLink>
       </div>
       <div className={styles["header-right"]}>
         <NavLink to="logIn" style={{ display: !isLoggedIn ? "block" : "none" }}>
           {" "}
-          Log In{" "}
-        </NavLink>
-        <NavLink to="main" style={{ display: isLoggedIn ? "block" : "none" }}>
-          {" "}
-          Calendar{" "}
+          Увійти{" "}
         </NavLink>
         <NavLink
           to="profile"
           style={{ display: isLoggedIn ? "block" : "none" }}
         >
           {" "}
-          Profile{" "}
+          Профіль{" "}
         </NavLink>
-        <NavLink
-          to="notifications"
-          style={{ display: isLoggedIn ? "block" : "none" }}
-        >
+        <NavLink to="main" style={{ display: isLoggedIn ? "block" : "none" }}>
           {" "}
-          Notifications{" "}
+          Календарь{" "}
         </NavLink>
         <NavLink
           to="patientspage"
           style={{ display: isLoggedIn ? "block" : "none" }}
         >
           {" "}
-          Patients{" "}
+          Пацієнти{" "}
+        </NavLink>
+        <NavLink
+          to="notifications"
+          style={{
+            display: isLoggedIn ? "block" : "none",
+            color: props.noficications ? "rgb(255, 77, 77)" : "black",
+          }}
+        >
+          {" "}
+          Повідомлення{" "}
         </NavLink>
         <NavLink
           to="/"
@@ -74,7 +91,7 @@ const Header = (props) => {
           onClick={handleLogOut}
         >
           {" "}
-          Log out{" "}
+          Вийти{" "}
         </NavLink>
       </div>
     </div>
@@ -86,12 +103,16 @@ const dispatchPropsToState = (dispatch) => {
     LogIn: () => {
       dispatch({ type: "LOG_IN" });
     },
+    Notif: (payload) => {
+      dispatch({ type: "NOTIF", payload });
+    },
   };
 };
 
 const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.isLoggedIn,
+    noficications: state.noficications,
   };
 };
 

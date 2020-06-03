@@ -15,13 +15,8 @@ const ProfilePage = () => {
       .then((data) => {
         setFullDoctor(data);
         return data;
-      })
-      .then(() => {
-        console.log(fullDoctor);
       });
   }, []);
-
-  console.log("fullDoctor", fullDoctor);
 
   return (
     <div className={styles["main"]}>

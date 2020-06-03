@@ -77,7 +77,7 @@ const CreateAppointment = (props) => {
         </div>
         <div>
           <button onClick={handleCreateAppointment} className={styles["but"]}>
-            Назначити
+            Призначити
           </button>
         </div>
       </div>

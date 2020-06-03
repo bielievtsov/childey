@@ -2,6 +2,7 @@ const initialState = {
   showLogIn: true,
   isLoggedIn: false,
   doctorId: "",
+  noficications: 0,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -12,6 +13,18 @@ const rootReducer = (state = initialState, action) => {
         showLogIn: !state.showLogIn,
         isLoggedIn: !state.isLoggedIn,
         doctorId: state.doctorId,
+      };
+    }
+    case "NOTIF": {
+      let res = 0;
+      action.payload.map((el) => {
+        if (!el.checked) {
+          res++;
+        }
+      });
+      return {
+        ...state,
+        noficications: res,
       };
     }
     default: {

@@ -9,13 +9,18 @@ const PregnantPage = (props) => {
   queryString.parse(props.location.search);
   const { doctorId } = JSON.parse(localStorage.getItem("token"));
   const { token } = JSON.parse(localStorage.getItem("token"));
-  const { patient } = props.location.state;
+  const { patient } = props.location.state.patient;
   const { _id } = patient;
   const [isRedirect, setIsRedirect] = useState(false);
   const [paramets, setParametrs] = useState([]);
+  const [p, setProps] = useState(false);
 
   const handleCreateAppointment = () => {
     setIsRedirect(!isRedirect);
+  };
+
+  const handleStateChange = () => {
+    setProps(!!setProps);
   };
 
   useEffect(() => {
@@ -26,11 +31,9 @@ const PregnantPage = (props) => {
       .then((data) => {
         setParametrs(data);
         return data;
-      })
-      .then((d) => {
-        console.log("paramets", d);
       });
-  }, []);
+  }, [p]);
+
   let k = 0;
   if (isRedirect) {
     return (
@@ -60,7 +63,7 @@ const PregnantPage = (props) => {
           </div>
           <div>
             <button onClick={handleCreateAppointment} className={styles["but"]}>
-              Назначити зустріч
+              Призначити зустріч
             </button>
           </div>
         </div>
@@ -68,7 +71,11 @@ const PregnantPage = (props) => {
           {paramets.map((el) => {
             if (el.patient._id === _id && el.checked === false) {
               return (
-                <ParamsComponent paramets={el} key={k++}></ParamsComponent>
+                <ParamsComponent
+                  paramets={el}
+                  key={k++}
+                  setProps={handleStateChange}
+                ></ParamsComponent>
               );
             }
           })}

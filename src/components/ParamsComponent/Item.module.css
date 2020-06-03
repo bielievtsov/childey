@@ -16,6 +16,14 @@
   padding: 5px;
   width: 120px;
 }
+.comment {
+  margin-left: 20%;
+  height: 25px;
+  border-radius: 5px;
+  font-size: large;
+  border: none;
+  width: 200px;
+}
 .root button:hover {
   background-color: rgb(115, 199, 255);
 }
