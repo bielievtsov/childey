@@ -66,7 +66,7 @@ const Header = (props) => {
         </NavLink>
         <NavLink to="main" style={{ display: isLoggedIn ? "block" : "none" }}>
           {" "}
-          Календарь{" "}
+          Календар{" "}
         </NavLink>
         <NavLink
           to="patientspage"

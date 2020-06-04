@@ -1,10 +1,10 @@
 .main {
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.52);
-    width: 200vh;
-    height: 135vh;
-    display: flex;
-    align-items: center;
-    padding-left: 600px;
-    padding-top: 100px;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.52);
+  width: 200vh;
+  height: 135vh;
+  display: flex;
+  align-items: center;
+  padding-left: 800px;
+  padding-top: 600px;
 }
